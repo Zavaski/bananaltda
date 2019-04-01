@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+</h:head>
+<h:body>
+    <h:form>
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+        <h:panelGrid id="grid" columns="2" cellpadding="5">
+
+            <h:outputLabel value="Nome"/>
+            <h:inputText value="#{usuarioBean.nome}" required="true" requiredMessage="Digite o nome"/>
+
+            <h:outputLabel value="Login"/>
+            <h:inputText value="#{usuarioBean.login}" required="true" requiredMessage="Digite um login"/>
+
+            <h:outputLabel value="E-mail"/>
+            <h:inputText value="#{usuarioBean.email}" required="true" requiredMessage="Digite seu email"/>
+
+            <h:outputLabel value="Senha"/>
+            <h:inputSecret value="#{usuarioBean.senha}" required="true" requiredMessage="Digite a senha"/>
+
+            <h:commandButton value="Salvar" action="#{usuarioBean.cadastrarUsuario()}" update="@form"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

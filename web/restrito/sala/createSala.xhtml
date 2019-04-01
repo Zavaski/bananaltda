@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+</h:head>
+<h:body>
+    <h:form>
+    <p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate />
+    </p:messages>
+    <h:panelGrid id="grid" columns="2" cellpadding="5">
+
+        <h:outputLabel value="Nome"/>
+        <h:inputText value="#{salaBean.nome}" />
+
+        <h:outputLabel value="Descricao"/>
+        <h:inputText value="#{salaBean.descricao}" />
+
+        <p:column headerText="nomeLocal" id="testeAjax" >
+            <h:outputText value="Local: "  />
+            <p:selectOneMenu id="local"
+                             value="#{salaBean.idLocal}">
+                <f:selectItem itemLabel="Selecione um local" itemValue="" />
+                <f:selectItems value="#{salaBean.listarLocais()}"  />
+            </p:selectOneMenu>
+        </p:column>
+        <br></br>
+        <h:commandButton value="Salvar" action="#{salaBean.salvarSala()}"/>
+    </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
