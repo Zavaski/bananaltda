@@ -1,22 +1,20 @@
 package com.banana.DAO;
 
-import com.banana.Model.Sala;
-import com.banana.Model.Usuario;
+import com.banana.Model.ReservaSala;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.banana.DAO.HibernateUtil;
 
 import javax.faces.context.FacesContext;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class SalaDAO {
-    public void criarSala(Sala sala) {
+public class ReservaSalaDAO {
+
+        public void criarReservaSala(ReservaSala reservaSala) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(sala);
+            session.save(reservaSala);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -25,23 +23,23 @@ public class SalaDAO {
             e.printStackTrace();
         }
     }
-    public void editarSala(Sala sala) {
+        public void editarSala(ReservaSala reservaSala) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(sala);
+            session.update(reservaSala);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public List<Sala> listarSalas() {
+        public List<ReservaSala> listarReservaSalas() {
         Transaction transaction = null;
-        List<Sala> salas;
+        List<ReservaSala> reservaSalas;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            salas = session.createQuery("from Sala ", Sala.class).list();
-            return salas;
+            reservaSalas = session.createQuery("from ReservaSala ", ReservaSala.class).list();
+            return reservaSalas;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -49,25 +47,25 @@ public class SalaDAO {
 
     }
 
-    public void searchSalaEDeletePorID(int ID) {
+        public void searchSalaEDeletePorID(int ID) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Sala sala = (Sala) session.get(Sala.class, ID);
-            session.delete(sala);
+            ReservaSala reservaSalas = (ReservaSala) session.get(ReservaSala.class, ID);
+            session.delete(reservaSalas);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void searchLocalEditarPorID(int ID) {
+        public void searchLocalEditarPorID(int ID) {
         Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Sala sala = (Sala) session.get(Sala.class, ID);
-            sessionMapObj.put("editSala", sala);
+            ReservaSala reservaSala = (ReservaSala) session.get(ReservaSala.class, ID);
+            sessionMapObj.put("editReservaSala", reservaSala);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();

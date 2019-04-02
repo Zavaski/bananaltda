@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <script type="text/javascript">
+        PrimeFaces.locales['de'] = {
+            closeText: 'Schließen',
+            prevText: 'Zurück',
+            nextText: 'Weiter',
+            monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+            monthNamesShort: ['Jan', 'Feb', 'März', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+            dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+            dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+            dayNamesMin: ['S', 'M', 'D', 'M ', 'D', 'F ', 'S'],
+            weekHeader: 'Woche',
+            FirstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Nur Zeit',
+            timeText: 'Zeit',
+            hourText: 'Stunde',
+            minuteText: 'Minute',
+            secondText: 'Sekunde',
+            currentText: 'Aktuelles Datum',
+            ampm: false,
+            month: 'Monat',
+            week: 'Woche',
+            day: 'Tag',
+            allDayText: 'Ganzer Tag'
+        };
+    </script>
+
+    <style type="text/css">
+        .value {
+            font-weight: bold;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form>
+    <p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate />
+    </p:messages>
+    <h:panelGrid id="grid" columns="2" cellpadding="5">
+
+        <p:outputLabel for="data" value="Data:" />
+        <p:calendar id="data" value="#{reservaSalaBean.dataInicio}" pattern="dd-MM-yyyy" mask="true" />
+        <p:outputLabel for="timeInicio" value="Horario Inicial:" />
+        <p:calendar id="timeInicio" value="#{reservaSalaBean.horaInicio}" pattern="HH:mm" timeOnly="true"  />
+
+        <p:outputLabel for="timeFim" value="Horario Final:" />
+        <p:calendar id="timeFim" value="#{reservaSalaBean.horaFim}" pattern="HH:mm" timeOnly="true"  />
+
+        <p:column headerText="nomeLocal"  >
+            <h:outputText value="Local: "  />
+            <p:selectOneMenu id="local"
+                             value="#{reservaSalaBean.IDLocal}">
+                <f:selectItem itemLabel="Selecione um local" itemValue="" />
+                <f:selectItems value="#{reservaSalaBean.listarLocais()}"  />
+            </p:selectOneMenu>
+        </p:column>
+        <br></br>
+        <p:column headerText="nomeSala" >
+            <h:outputText value="Sala: "  />
+            <p:selectOneMenu id="Sala"
+                             value="#{reservaSalaBean.IDSala}">
+                <f:selectItem itemLabel="Selecione uma Sala" itemValue="" />
+                <f:selectItems value="#{reservaSalaBean.listarSalas()}"  />
+            </p:selectOneMenu>
+        </p:column>
+        <h:commandButton value="Salvar" action="#{reservaSalaBean.salvarReservaSala()}"/>
+    </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

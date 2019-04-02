@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form id="salaForm">
+        <p:commandButton action="createSala.xhtml?faces-redirect=true" value="Novo" />
+
+        <p:dataTable id="reservasala" var="reservasala" value="#{reservaSalaBean.listarReservaSalas()}" rows="10"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+            <f:facet name="header">
+                Reserva de salas
+            </f:facet>
+            <p:column headerText="ID">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{reservasala.ID}"  />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{reservasala.ID}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Data Inicio">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{reservasala.dataInicio}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{reservasala.dataInicio}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Data Fim">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{reservasala.dataFim}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{reservasala.dataFim}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Data Fim">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{reservasala.horarioInicio}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{reservasala.horarioFim}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+
+            <p:column headerText="Deletar">
+
+                <p:commandButton value="Deletar" action="#{reservaSalaBean.deletarSala(reservasala.ID)}" update="@form">
+                </p:commandButton>
+            </p:column>
+            <p:column headerText="Editar">
+
+                <p:commandButton value="Editar" action="#{reservaSalaBean.editarSala(reservasala.ID)}">
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+</h:head>
+<h:body>
+
+    <h:form>
+        <h1>Usuario logado: #{loginBean.login} </h1>
+        <h:commandButton value="Deslogar" action="#{loginBean.Deslogar}"/>
+    </h:form>
+    <br/>
+    <p:link outcome="/restrito/local/createLocal.xhtml" value="Cadastrar Local">
+    </p:link>
+    <br/>
+    <p:link outcome="/restrito/local/locaisList.xhtml" value="Listar Locais">
+    </p:link>
+    <br/>
+    <p:link outcome="/restrito/sala/createSala.xhtml" value="Cadastrar Sala">
+    </p:link>
+    <br/>
+    <p:link outcome="/restrito/sala/salasList.xhtml" value="Listar Salas">
+    </p:link>
+    <br/>
+    <p:link outcome="/restrito/reservasala/createReservaSala.xhtml" value="Cadastrar Reserva Sala">
+    </p:link>
+    <br/>
+    <p:link outcome="/restrito/reservasala/reservasalasList.xhtml" value="Listar Reserva Sala">
+    </p:link>
+
+</h:body>
+</html>
