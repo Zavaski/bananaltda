@@ -1,19 +1,17 @@
 package com.banana.Bean;
 import com.banana.Model.Local;
 import com.banana.Model.Sala;
-import com.banana.Service.LocalService;
-import com.banana.Service.SalaService;
+import com.banana.Service.Impl.LocalServiceImpl;
+import com.banana.Service.Impl.SalaServiceImpl;
 
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.xml.registry.infomodel.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.io.Serializable;
 @Named("salaBean")
 @ViewScoped
 public class SalaBean implements Serializable {
@@ -22,9 +20,9 @@ public class SalaBean implements Serializable {
     private int idLocal;
     List<SelectItem> locais;
     @Inject
-    transient private SalaService salaService;
+    transient private SalaServiceImpl salaService;
     @Inject
-     transient private LocalService localService;
+     transient private LocalServiceImpl localService;
 
     public String salvarSala() {
         System.out.print("------------");
@@ -88,11 +86,11 @@ public class SalaBean implements Serializable {
         this.idLocal = idLocal;
     }
 
-    public SalaService getSalaService() {
+    public SalaServiceImpl getSalaService() {
         return salaService;
     }
 
-    public void setSalaService(SalaService salaService) {
+    public void setSalaService(SalaServiceImpl salaService) {
         this.salaService = salaService;
     }
 }

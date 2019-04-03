@@ -16,15 +16,15 @@
     <h:panelGrid id="grid" columns="2" cellpadding="5">
 
         <h:outputLabel value="Nome"/>
-        <h:inputText value="#{salaBean.nome}" />
+        <h:inputText value="#{salaBean.nome}"  required="true" requiredMessage="Digite o nome"/>
 
         <h:outputLabel value="Descricao"/>
-        <h:inputText value="#{salaBean.descricao}" />
+        <h:inputText value="#{salaBean.descricao}"  required="true" requiredMessage="Digite a descrição"/>
 
         <p:column headerText="nomeLocal" id="testeAjax" >
             <h:outputText value="Local: "  />
             <p:selectOneMenu id="local"
-                             value="#{salaBean.idLocal}">
+                             value="#{salaBean.idLocal}" required="true" requiredMessage="Selecione um local">
                 <f:selectItem itemLabel="Selecione um local" itemValue="" />
                 <f:selectItems value="#{salaBean.listarLocais()}"  />
             </p:selectOneMenu>

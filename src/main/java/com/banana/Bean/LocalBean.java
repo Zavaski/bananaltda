@@ -1,17 +1,14 @@
 package com.banana.Bean;
 
 import com.banana.Model.Local;
-import com.banana.Service.LocalService;
+import com.banana.Service.Impl.LocalServiceImpl;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.xml.registry.infomodel.User;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import java.io.Serializable;
 @Named("localBean")
 @ViewScoped
 public class LocalBean implements Serializable {
@@ -20,11 +17,11 @@ public class LocalBean implements Serializable {
     private String endereco;
     private String IDString = "";
     @Inject
-    transient private LocalService localService;
+    transient private LocalServiceImpl localService;
 
     public String salvarLocal() {
         localService.salvarLocal(nome, CNPJ, endereco);
-        return "/locaisList.xhtml?faces-redirect=true";
+        return "/restrito/local/locaisList.xhtml?faces-redirect=true";
     }
      public String editarLocal(int ID){
 
@@ -35,7 +32,7 @@ public class LocalBean implements Serializable {
         System.out.println(ID);
 
         localService.deletarLocal(ID);
-        return "/locaisList.xhtml?faces-redirect=true";
+        return "/restrito/local/locaisList.xhtml?faces-redirect=true";
     }
 
 

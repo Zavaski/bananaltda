@@ -2,21 +2,19 @@ package com.banana.Bean;
 import com.banana.Model.Local;
 import com.banana.Model.ReservaSala;
 import com.banana.Model.Sala;
-import com.banana.Service.LocalService;
-import com.banana.Service.ReservaSalaService;
-import com.banana.Service.SalaService;
+import com.banana.Service.Impl.LocalServiceImpl;
+import com.banana.Service.Impl.ReservaSalaServiceImpl;
+import com.banana.Service.Impl.SalaServiceImpl;
 
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.xml.registry.infomodel.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import java.io.Serializable;
 @Named("reservaSalaBean")
 @ViewScoped
 public class ReservaSalaBean implements Serializable {
@@ -33,11 +31,11 @@ public class ReservaSalaBean implements Serializable {
     private int IDSala;
 
     @Inject
-    transient private ReservaSalaService reservaSalaService;
+    transient private ReservaSalaServiceImpl reservaSalaService;
     @Inject
-    transient private SalaService salaService;
+    transient private SalaServiceImpl salaService;
     @Inject
-    transient private LocalService localService;
+    transient private LocalServiceImpl localService;
 
     public String salvarReservaSala() {
         //ARRUMAR
@@ -155,11 +153,11 @@ public class ReservaSalaBean implements Serializable {
         this.quantidadePessoas = quantidadePessoas;
     }
 
-    public LocalService getLocalService() {
+    public LocalServiceImpl getLocalService() {
         return localService;
     }
 
-    public void setLocalService(LocalService localService) {
+    public void setLocalService(LocalServiceImpl localService) {
         this.localService = localService;
     }
 

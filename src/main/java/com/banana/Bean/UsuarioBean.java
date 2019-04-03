@@ -1,18 +1,14 @@
 package com.banana.Bean;
 
-import com.banana.DAO.UsuarioDAO;
 import com.banana.Model.Usuario;
-import com.banana.Service.UsuarioService;
+import com.banana.Service.Impl.UsuarioServiceImpl;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.xml.registry.infomodel.User;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import java.io.Serializable;
 @Named("usuarioBean")
 @ViewScoped
 public class UsuarioBean implements Serializable {
@@ -21,19 +17,19 @@ public class UsuarioBean implements Serializable {
     private String senha;
     private String email;
     @Inject
-    transient private UsuarioService usuarioService;
+    transient private UsuarioServiceImpl usuarioServiceImpl;
 
     public String cadastrarUsuario() {
-        usuarioService.cadastrarUsuario(nome, login, senha, email);
+        usuarioServiceImpl.cadastrarUsuario(nome, login, senha, email);
         return "/login.xhtml?faces-redirect=true";
     }
     public String editarUsuario(int id) {
-        usuarioService.cadastrarUsuario(nome, login, senha, email);
+        usuarioServiceImpl.cadastrarUsuario(nome, login, senha, email);
         return "/login.xhtml?faces-redirect=true";
     }
 
     public List<Usuario> listarUsuario() {
-        return usuarioService.listarUsuario();
+        return usuarioServiceImpl.listarUsuario();
     }
 
     public String getNome() {

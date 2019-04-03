@@ -1,4 +1,4 @@
-package com.banana.DAO;
+package com.banana.DAO.Impl;
 
 
 import org.hibernate.SessionFactory;

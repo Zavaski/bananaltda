@@ -17,13 +17,13 @@
     <h:panelGrid id="grid" columns="2" cellpadding="5">
 
         <h:outputLabel value="Nome"/>
-        <h:inputText value="#{localBean.nome}" />
+        <h:inputText value="#{localBean.nome}"  required="true" requiredMessage="Digite o nome"/>
 
         <h:outputLabel value="CNPJ"/>
-        <h:inputText value="#{localBean.CNPJ}" />
+        <h:inputText value="#{localBean.CNPJ}"  required="true" requiredMessage="Digite o CNPJ"/>
 
         <h:outputLabel value="Endereço"/>
-        <h:inputText value="#{localBean.endereco}" />
+        <h:inputText value="#{localBean.endereco}" required="true" requiredMessage="Digite o endereço" />
 
         <h:commandButton value="Salvar" action="#{localBean.salvarLocal()}"/>
     </h:panelGrid>
