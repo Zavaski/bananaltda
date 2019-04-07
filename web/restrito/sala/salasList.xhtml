@@ -51,7 +51,16 @@
                     </f:facet>
                 </p:cellEditor>
             </p:column>
-
+            <p:column headerText="Local">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{sala.local.nome}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{sala.local.nome}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
             <p:column headerText="Deletar">
 
                 <p:commandButton value="Deletar" action="#{salaBean.deletarSala(sala.ID)}" update="@form">

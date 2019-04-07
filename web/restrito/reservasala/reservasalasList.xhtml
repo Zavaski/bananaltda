@@ -12,7 +12,23 @@
 
 <h:body>
     <h:form id="salaForm">
-        <p:commandButton action="createSala.xhtml?faces-redirect=true" value="Novo" />
+
+
+        <p:outputLabel for="data" value="Data Inicio:" />
+        <p:calendar id="data" value="#{reservaSalaBean.dataBusca}" pattern="dd-MM-yyyy" mask="true" />
+
+        <p:outputLabel  value="Sala: "  />
+        <p:selectOneMenu id="salas" value="#{reservaSalaBean.IDSalaBusca}">
+            <f:selectItem itemLabel="Selecione uma Sala" itemValue="" />
+            <f:selectItems value="#{reservaSalaBean.listarSalas()}" />
+        </p:selectOneMenu>
+
+        <p:commandButton value="Buscar" action="#{reservaSalaBean.buscarSalas()}" update="@form">
+        </p:commandButton>
+
+
+        <br></br>
+        <p:commandButton action="/restrito/reservasala/createReservaSala.xhtml?faces-redirect=true" value="Novo" />
 
         <p:dataTable id="reservasala" var="reservasala" value="#{reservaSalaBean.listarReservaSalas()}" rows="10"
                      paginator="true"
@@ -41,6 +57,7 @@
                     </f:facet>
                 </p:cellEditor>
             </p:column>
+
             <p:column headerText="Data Fim">
                 <p:cellEditor>
                     <f:facet name="output">
@@ -51,26 +68,16 @@
                     </f:facet>
                 </p:cellEditor>
             </p:column>
-            <p:column headerText="Data Fim">
-                <p:cellEditor>
-                    <f:facet name="output">
-                        <h:outputText value="#{reservasala.horarioInicio}" />
-                    </f:facet>
-                    <f:facet name="input">
-                        <p:inputText value="#{reservasala.horarioFim}" />
-                    </f:facet>
-                </p:cellEditor>
-            </p:column>
 
 
             <p:column headerText="Deletar">
 
-                <p:commandButton value="Deletar" action="#{reservaSalaBean.deletarSala(reservasala.ID)}" update="@form">
+                <p:commandButton value="Deletar" action="#{reservaSalaBean.deletarReservaSala(reservasala.ID)}" update="@form">
                 </p:commandButton>
             </p:column>
             <p:column headerText="Editar">
 
-                <p:commandButton value="Editar" action="#{reservaSalaBean.editarSala(reservasala.ID)}">
+                <p:commandButton value="Editar" action="#{reservaSalaBean.editarReservaSala(reservasala.ID)}">
                 </p:commandButton>
             </p:column>
         </p:dataTable>

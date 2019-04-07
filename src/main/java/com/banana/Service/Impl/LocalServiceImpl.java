@@ -13,6 +13,7 @@ public class LocalServiceImpl implements LocalService {
     @Inject
     transient private LocalDAOImpl localDAO;
 
+    @Override
     public void salvarLocal(String nome, String CNPJ, String endereco){
         System.out.print("Salvar service ");
         Local local = new Local();
@@ -22,27 +23,37 @@ public class LocalServiceImpl implements LocalService {
         cadastrarLocal(local);
     }
 
-
+    @Override
     public void deletarLocal(int id){
         localDAO.searchLocalDeletePorID(id);
     }
 
+    @Override
     public void editarTela(int ID){
         System.out.println("ID no service: " + ID);
         localDAO.searchLocalPorID(ID);
     }
 
 
+    @Override
     public void cadastrarLocal(Local local) {
         localDAO.criarLocal(local);
     }
+
+    @Override
     public List<Local> listarLocais() {
         return localDAO.listarLocais();
     }
 
-
+    @Override
     public void editarLocal(Local local) {
         localDAO.editarLocal(local);
     }
+
+    @Override
+    public Local buscarLocalByID(int ID) {
+        return localDAO.buscarLocalByID(ID);
+    }
+
 
 }

@@ -28,7 +28,7 @@
             <h:outputLabel value="Senha"/>
             <h:inputSecret value="#{usuarioBean.senha}" required="true" requiredMessage="Digite a senha"/>
 
-            <h:commandButton value="Salvar" action="#{usuarioBean.cadastrarUsuario()}" update="@form"/>
+            <p:commandButton value="Salvar" action="#{usuarioBean.cadastrarUsuario()}" update="@form"/>
         </h:panelGrid>
     </h:form>
 </h:body>

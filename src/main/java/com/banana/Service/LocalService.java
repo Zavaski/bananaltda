@@ -8,7 +8,7 @@ public interface LocalService {
 
     public void salvarLocal(String nome, String CNPJ, String endereco);
 
-    public void deletarLocal(int id);
+    public void deletarLocal(int ID);
 
     public void editarTela(int ID);
 
@@ -18,4 +18,5 @@ public interface LocalService {
 
     public void editarLocal(Local local);
 
+    public Local buscarLocalByID(int ID);
 }

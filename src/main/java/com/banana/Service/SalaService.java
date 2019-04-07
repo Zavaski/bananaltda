@@ -10,12 +10,17 @@ public interface SalaService {
 
     public void deletarSala(int id);
 
-    public void editarTela(int ID);
+    public void editarSala(int ID);
 
     public void cadastrarSala(Sala sala);
 
     public List<Sala> listarSalas();
 
     public void editarSala(Sala sala);
+
+    public List<Sala> listarSalasByLocalID(int LocalID);
+
+    public Sala buscarSalaByID(int ID);
+
 
 }

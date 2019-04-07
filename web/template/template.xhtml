@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="./css/skin.css"/>
+    <title>Título</title>
+</h:head>
+
+<h:body>
+    <h:form id="barraDeFerramentas">
+        <p:toolbar>
+            <p:toolbarGroup align="left">
+                <p:menuButton value="Gerenciamento de Locais">
+                    <p:menuitem value="Cadastrar Local" action="/restrito/local/createLocal.xhtml" ajax="false"/>
+                    <p:menuitem value="Listar Locais" action="/restrito/local/locaisList.xhtml" ajax="false"/>
+                </p:menuButton>
+                <p:menuButton value="Gerenciamento de Salas">
+                    <p:menuitem value="Cadastrar Sala" action="/restrito/sala/createSala.xhtml" ajax="false"/>
+                    <p:menuitem value="Listar Salas" action="/restrito/sala/salasList.xhtml" ajax="false"/>
+                </p:menuButton>
+                <p:menuButton value="Reserva de Salas">
+                    <p:menuitem value="Cadastrar Reserva de sala"  action="/restrito/reservasala/createReservaSala.xhtml" ajax="false"/>
+                    <p:menuitem value="Listar Reserva de salas" action="/restrito/reservasala/reservasalasList.xhtml" ajax="false"/>
+                </p:menuButton>
+                <p:menuButton value="Usuarios">
+                    <p:menuitem value="Listar Usuarios" action="pagina1" ajax="false"/>
+                </p:menuButton>
+               <!-- <p:commandButton value="Menu 2" action="pagina3" ajax="false"/> -->
+            </p:toolbarGroup>
+        </p:toolbar>
+    </h:form>
+
+    <div><ui:insert name="Conteudo"> Aqui vai o conteudo </ui:insert></div>
+
+</h:body>
+</html>

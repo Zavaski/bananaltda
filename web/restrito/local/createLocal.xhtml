@@ -1,32 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<?xml version='1.0' encoding='UTF-8' ?>
 
-<h:head>
-</h:head>
-<h:body>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
 
-    <h:form>
-    <p:messages id="messages" showDetail="true" closable="true">
-        <p:autoUpdate />
-    </p:messages>
-    <h:panelGrid id="grid" columns="2" cellpadding="5">
+    <ui:define name="Conteudo">
+        <h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <h:panelGrid id="grid" columns="2" cellpadding="5">
 
-        <h:outputLabel value="Nome"/>
-        <h:inputText value="#{localBean.nome}"  required="true" requiredMessage="Digite o nome"/>
+                <p:outputLabel value="Nome"/>
+                <h:inputText value="#{localBean.nome}"  required="true" requiredMessage="Digite o nome"/>
 
-        <h:outputLabel value="CNPJ"/>
-        <h:inputText value="#{localBean.CNPJ}"  required="true" requiredMessage="Digite o CNPJ"/>
+                <p:outputLabel value="CNPJ"/>
+                <h:inputText value="#{localBean.CNPJ}"  required="true" requiredMessage="Digite o CNPJ"/>
 
-        <h:outputLabel value="Endereço"/>
-        <h:inputText value="#{localBean.endereco}" required="true" requiredMessage="Digite o endereço" />
+                <p:outputLabel value="Endereço"/>
+                <h:inputText value="#{localBean.endereco}" required="true" requiredMessage="Digite o endereço" />
 
-        <h:commandButton value="Salvar" action="#{localBean.salvarLocal()}"/>
-    </h:panelGrid>
-    </h:form>
-</h:body>
-</html>
+                <p:commandButton value="Salvar" action="#{localBean.salvarLocal()}"/>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

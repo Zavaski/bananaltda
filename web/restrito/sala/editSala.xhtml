@@ -15,24 +15,19 @@
         </p:messages>
         <h:panelGrid id="grid" columns="2" cellpadding="5">
 
-
-            <h:outputLabel value="Nome"/>
+            <p:outputLabel  value="Nome"/>
             <h:inputText value="#{editSala.nome}"  required="true" requiredMessage="Digite o nome"/>
 
-            <h:outputLabel value="Descrição"/>
+            <p:outputLabel  value="Descrição"/>
             <h:inputText value="#{editSala.descricao}"  required="true" requiredMessage="Digite a descrição"/>
 
-            <p:column headerText="nomeLocal" id="testeAjax" >
-                <h:outputText value="Local: "  />
-                <p:selectOneMenu id="local"
-                                 value="#{salaBean.idLocal}" required="true" requiredMessage="Selecione um local">
+            <p:outputLabel  value="Local: "  />
+            <p:selectOneMenu id="local" value="#{editSala.local.ID}" required="true" requiredMessage="Selecione um local">
                     <f:selectItem itemLabel="Selecione um local" itemValue="" />
                     <f:selectItems value="#{salaBean.listarLocais()}"  />
-                </p:selectOneMenu>
-            </p:column>
-            <br></br>
+            </p:selectOneMenu>
 
-            <h:commandButton value="Salvar" action="#{salaBean.editarSala(editSala)}"/>
+            <p:commandButton  value="Salvar" action="#{salaBean.editarSala(editSala)}"/>
         </h:panelGrid>
     </h:form>
 </h:body>

@@ -15,5 +15,6 @@ public interface LocalDAO {
 
     public void searchLocalPorID(int ID);
 
+    public Local buscarLocalByID(int ID);
 
 }

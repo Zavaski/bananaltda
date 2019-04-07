@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class LocalDAOImpl implements LocalDAO {
 
+    @Override
     public void criarLocal(Local local) {
         System.out.println("Cadastrar Local DAO");
         Transaction transaction = null;
@@ -25,6 +26,8 @@ public class LocalDAOImpl implements LocalDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
     public List<Local> listarLocais(){
         System.out.println("Listar Local DAO");
 
@@ -39,6 +42,8 @@ public class LocalDAOImpl implements LocalDAO {
         }
 
     }
+
+    @Override
     public void searchLocalDeletePorID(int ID){
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -51,6 +56,7 @@ public class LocalDAOImpl implements LocalDAO {
         }
     }
 
+    @Override
     public void editarLocal(Local local) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -61,6 +67,8 @@ public class LocalDAOImpl implements LocalDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
     public void searchLocalPorID(int ID){
         Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         Transaction transaction = null;
@@ -74,4 +82,18 @@ public class LocalDAOImpl implements LocalDAO {
         }
     }
 
+    @Override
+    public Local buscarLocalByID(int ID) {
+        Transaction transaction = null;
+        Local local;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            local = (Local) session.get(Local.class, ID);
+            return local;
+        } catch (Exception e) {
+            e.printStackTrace();
+            local = new Local();
+            return local;
+        }
+    }
 }

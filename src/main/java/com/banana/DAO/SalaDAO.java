@@ -15,4 +15,9 @@ public interface SalaDAO {
     public void searchSalaEDeletePorID(int ID);
 
     public void searchLocalEditarPorID(int ID) ;
+
+    public List<Sala> listarSalasByLocalID(int LocalID);
+
+    public Sala buscarSalaByID(int ID);
+
 }

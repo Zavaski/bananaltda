@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
+    @Override
     public void criarUsuario(Usuario user) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -25,6 +26,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
     public List<Usuario> listarUsuarios(){
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -36,6 +39,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
 
     }
+
+    @Override
     public void deletarUsuario(Usuario user) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -49,6 +54,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
     public void editarUsuario(Usuario user) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

@@ -32,7 +32,7 @@ public class SalaBean implements Serializable {
     }
     public String editarSala(int ID){
 
-        salaService.editarTela(ID);
+        salaService.editarSala(ID);
         return "/restrito/sala/editSala.xhtml?faces-redirect=true";
     }
     public String deletarSala(int ID){
@@ -50,6 +50,8 @@ public class SalaBean implements Serializable {
 
 
     public String editarSala(Sala sala) {
+        System.out.println("1: " + idLocal);
+        System.out.println("2: " + sala.getLocal().getID());
         salaService.editarSala(sala);
         return "/restrito/sala/salasList.xhtml?faces-redirect=true";
     }

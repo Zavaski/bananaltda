@@ -29,6 +29,8 @@ public class ReservaSalaBean implements Serializable {
     private String descricao;
     private int IDLocal;
     private int IDSala;
+    private Date dataBusca;
+    private int IDSalaBusca;
 
     @Inject
     transient private ReservaSalaServiceImpl reservaSalaService;
@@ -37,9 +39,8 @@ public class ReservaSalaBean implements Serializable {
     @Inject
     transient private LocalServiceImpl localService;
 
-    public String salvarReservaSala() {
-        //ARRUMAR
-        // reservaSalaService.salvarReservaSala();
+    public String salvarReservaSala( ){
+        reservaSalaService.salvarReservaSala(dataInicio,  dataFim,  horaInicio, horaFim,  IDLocal, IDSala, cafe, quantidadePessoas, descricao);
         return "/restrito/reservasala/reservasalasList.xhtml?faces-redirect=true";
     }
     public String editarReservaSala(int ID){
@@ -71,6 +72,7 @@ public class ReservaSalaBean implements Serializable {
         }
         return locais;
     }
+
     public List<SelectItem> listarSalas() {
         salas = new ArrayList<SelectItem>();
         for (Sala sl : salaService.listarSalas()) {
@@ -78,6 +80,18 @@ public class ReservaSalaBean implements Serializable {
         }
         return salas;
     }
+    public List<SelectItem> listarSalasByLocalID(int IDLocal) {
+        System.out.println("============================");
+        System.out.println(IDLocal);
+        System.out.println("============================");
+        salas = new ArrayList<SelectItem>();
+        for (Sala sl :  salaService.listarSalasByLocalID(IDLocal)) {
+            salas.add(new SelectItem(sl.getID(), sl.getNome()));
+        }
+
+        return salas;
+    }
+
 
 
     public String getDescricao() {
@@ -175,5 +189,21 @@ public class ReservaSalaBean implements Serializable {
 
     public void setIDSala(int IDSala) {
         this.IDSala = IDSala;
+    }
+
+    public Date getDataBusca() {
+        return dataBusca;
+    }
+
+    public void setDataBusca(Date dataBusca) {
+        this.dataBusca = dataBusca;
+    }
+
+    public int getIDSalaBusca() {
+        return IDSalaBusca;
+    }
+
+    public void setIDSalaBusca(int IDSalaBusca) {
+        this.IDSalaBusca = IDSalaBusca;
     }
 }

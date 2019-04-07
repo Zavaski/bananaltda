@@ -8,41 +8,57 @@ import com.banana.Service.SalaService;
 import javax.inject.Inject;
 import java.util.List;
 
-public class SalaServiceImpl implements SalaService {
+public class SalaServiceImpl implements SalaService{
     @Inject
     transient private SalaDAOImpl salaDAO;
     @Inject
     transient private LocalServiceImpl localService;
 
+    @Override
     public void salvarSala(String nome, String descricao, int IDLocal){
-        System.out.print("Salvar service ");
         Sala sala = new Sala();
         sala.setDescricao(descricao);
         sala.setNome(nome);
+        sala.setLocal(localService.buscarLocalByID(IDLocal));
         cadastrarSala(sala);
     }
 
 
-    public void deletarSala(int id){
-        salaDAO.searchSalaEDeletePorID(id);
+    @Override
+    public void deletarSala(int ID){
+        salaDAO.searchSalaEDeletePorID(ID);
     }
 
-    public void editarTela(int ID){
+    @Override
+    public void editarSala(int ID){
         System.out.println("ID no service: " + ID);
         salaDAO.searchLocalEditarPorID(ID);
     }
 
-
+    @Override
     public void cadastrarSala(Sala sala) {
         salaDAO.criarSala(sala);
     }
+
+    @Override
     public List<Sala> listarSalas() {
         return salaDAO.listarSalas();
     }
 
-
+    @Override
     public void editarSala(Sala sala) {
         salaDAO.editarSala(sala);
+    }
+
+    @Override
+    public List<Sala> listarSalasByLocalID(int LocalID) {
+        return salaDAO.listarSalasByLocalID(LocalID);
+    }
+
+    @Override
+    public Sala buscarSalaByID(int ID) {
+        return salaDAO.buscarSalaByID(ID);
+
     }
 
 

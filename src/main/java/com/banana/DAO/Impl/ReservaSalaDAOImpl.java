@@ -11,8 +11,12 @@ import java.util.Map;
 
 public class ReservaSalaDAOImpl implements ReservaSalaDAO {
 
-        public void criarReservaSala(ReservaSala reservaSala) {
-        Transaction transaction = null;
+    @Override
+    public void criarReservaSala(ReservaSala reservaSala) {
+            System.out.println("----------------- RS DAO");
+            System.out.println("Reserva memory " + reservaSala);
+            System.out.println("----------------- RS DAO");
+            Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.save(reservaSala);
@@ -24,7 +28,9 @@ public class ReservaSalaDAOImpl implements ReservaSalaDAO {
             e.printStackTrace();
         }
     }
-        public void editarSala(ReservaSala reservaSala) {
+
+    @Override
+    public void editarSala(ReservaSala reservaSala) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -35,7 +41,8 @@ public class ReservaSalaDAOImpl implements ReservaSalaDAO {
         }
     }
 
-        public List<ReservaSala> listarReservaSalas() {
+    @Override
+    public List<ReservaSala> listarReservaSalas() {
         Transaction transaction = null;
         List<ReservaSala> reservaSalas;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -48,7 +55,8 @@ public class ReservaSalaDAOImpl implements ReservaSalaDAO {
 
     }
 
-        public void searchSalaEDeletePorID(int ID) {
+    @Override
+    public void searchSalaEDeletePorID(int ID) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -60,7 +68,8 @@ public class ReservaSalaDAOImpl implements ReservaSalaDAO {
         }
     }
 
-        public void searchLocalEditarPorID(int ID) {
+    @Override
+    public void searchLocalEditarPorID(int ID) {
         Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

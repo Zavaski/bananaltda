@@ -50,31 +50,34 @@
     <h:panelGrid id="grid" columns="2" cellpadding="5">
 
         <p:outputLabel for="data" value="Data:" />
-        <p:calendar id="data" value="#{reservaSalaBean.dataInicio}" pattern="dd-MM-yyyy" mask="true" />
+        <p:calendar id="data" value="#{reservaSalaBean.dataInicio}" pattern="dd-MM-yyyy" mask="true" required="true" requiredMessage="Digite a data"/>
+
         <p:outputLabel for="timeInicio" value="Horario Inicial:" />
-        <p:calendar id="timeInicio" value="#{reservaSalaBean.horaInicio}" pattern="HH:mm" timeOnly="true"  />
+        <p:calendar id="timeInicio" value="#{reservaSalaBean.horaInicio}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Digite o horario inicial"/>
 
         <p:outputLabel for="timeFim" value="Horario Final:" />
-        <p:calendar id="timeFim" value="#{reservaSalaBean.horaFim}" pattern="HH:mm" timeOnly="true"  />
+        <p:calendar id="timeFim" value="#{reservaSalaBean.horaFim}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Digite o horario final"/>
 
-        <p:column headerText="nomeLocal"  >
-            <h:outputText value="Local: "  />
-            <p:selectOneMenu id="local"
-                             value="#{reservaSalaBean.IDLocal}">
+        <p:outputLabel  value="Local: "  />
+            <p:selectOneMenu id="locais"   value="#{reservaSalaBean.IDLocal}" required="true" requiredMessage="Digite o local">
                 <f:selectItem itemLabel="Selecione um local" itemValue="" />
+                <f:ajax event="valueChange" execute="@this" render="@this salas" />
                 <f:selectItems value="#{reservaSalaBean.listarLocais()}"  />
             </p:selectOneMenu>
-        </p:column>
-        <br></br>
-        <p:column headerText="nomeSala" >
-            <h:outputText value="Sala: "  />
-            <p:selectOneMenu id="Sala"
-                             value="#{reservaSalaBean.IDSala}">
+
+            <p:outputLabel  value="Sala: "  />
+            <p:selectOneMenu id="salas" value="#{reservaSalaBean.IDSala}" required="true" requiredMessage="Digite a sala">
                 <f:selectItem itemLabel="Selecione uma Sala" itemValue="" />
-                <f:selectItems value="#{reservaSalaBean.listarSalas()}"  />
+                <f:selectItems value="#{reservaSalaBean.listarSalasByLocalID(reservaSalaBean.IDLocal)}" />
             </p:selectOneMenu>
-        </p:column>
-        <h:commandButton value="Salvar" action="#{reservaSalaBean.salvarReservaSala()}"/>
+        <p:outputLabel  value="Quantidade de pessoas"/>
+        <h:inputText value="#{reservaSalaBean.quantidadePessoas}"  required="true" requiredMessage="Digite a quantidade de pessoas" />
+
+        <p:outputLabel  value="Café: "  />
+        <p:selectBooleanCheckbox value="#{reservaSalaBean.cafe}">
+        </p:selectBooleanCheckbox>
+
+        <p:commandButton value="Salvar" action="#{reservaSalaBean.salvarReservaSala()}"/>
     </h:panelGrid>
     </h:form>
 </h:body>
