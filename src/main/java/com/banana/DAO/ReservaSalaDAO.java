@@ -2,6 +2,7 @@ package com.banana.DAO;
 
 import com.banana.Model.ReservaSala;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ReservaSalaDAO {
@@ -15,4 +16,6 @@ public interface ReservaSalaDAO {
     public void searchSalaEDeletePorID(int ID);
 
     public void searchLocalEditarPorID(int ID);
+
+    public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID);
 }

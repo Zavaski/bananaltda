@@ -69,6 +69,11 @@ public class ReservaSalaServiceImpl implements ReservaSalaService {
         return reservaSalaDAO.listarReservaSalas();
     }
 
+    @Override
+    public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID) {
+        return reservaSalaDAO.buscarReservaPeriodo(dataInicioQuery,dataFimQuery,SalaID);
+    }
+
 
     @Override
     public void editarReservaSala(ReservaSala reservaSala) {

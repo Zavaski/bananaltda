@@ -85,20 +85,12 @@ public class SalaDAOImpl implements SalaDAO {
 
     @Override
     public List<Sala> listarSalasByLocalID(int LocalID) {
-        System.out.println("------------------------Local ID DAO");
-        System.out.println(LocalID);
-        System.out.println("------------------------Local ID DAO");
         Transaction transaction = null;
         List<Sala> salas = new ArrayList<>();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery("from Sala where local.id = :id ");
             query.setParameter("id", LocalID);
             salas = query.getResultList();
-           // salas = session.createQuery("from Sala where Sala.local.ID = :locarID ", Sala.class).list();
-            System.out.println("------------------------SIZE");
-            System.out.println(salas.size());
-            System.out.println("------------------------SIZE");
-
             return salas;
         } catch (Exception e) {
             e.printStackTrace();

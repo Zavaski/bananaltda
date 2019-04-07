@@ -16,17 +16,17 @@
         </p:messages>
         <h:panelGrid id="grid" columns="2" cellpadding="5">
 
-            <h:outputLabel value="Nome"/>
-            <h:inputText value="#{usuarioBean.nome}" required="true" requiredMessage="Digite o nome"/>
+            <p:outputLabel value="Nome"/>
+            <p:inputText value="#{usuarioBean.nome}" required="true" requiredMessage="Digite o nome"/>
 
-            <h:outputLabel value="Login"/>
-            <h:inputText value="#{usuarioBean.login}" required="true" requiredMessage="Digite um login"/>
+            <p:outputLabel value="Login"/>
+            <p:inputText value="#{usuarioBean.login}" required="true" requiredMessage="Digite um login"/>
 
-            <h:outputLabel value="E-mail"/>
-            <h:inputText value="#{usuarioBean.email}" required="true" requiredMessage="Digite seu email"/>
+            <p:outputLabel value="E-mail"/>
+            <p:inputText value="#{usuarioBean.email}" required="true" requiredMessage="Digite seu email"/>
 
-            <h:outputLabel value="Senha"/>
-            <h:inputSecret value="#{usuarioBean.senha}" required="true" requiredMessage="Digite a senha"/>
+            <p:outputLabel value="Senha"/>
+            <p:password value="#{usuarioBean.senha}" required="true" requiredMessage="Digite a senha"/>
 
             <p:commandButton value="Salvar" action="#{usuarioBean.cadastrarUsuario()}" update="@form"/>
         </h:panelGrid>

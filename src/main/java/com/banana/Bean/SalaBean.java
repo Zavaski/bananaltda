@@ -25,8 +25,6 @@ public class SalaBean implements Serializable {
      transient private LocalServiceImpl localService;
 
     public String salvarSala() {
-        System.out.print("------------");
-        System.out.println(idLocal);
         salaService.salvarSala(nome, descricao,idLocal);
         return "/restrito/sala/salasList.xhtml?faces-redirect=true";
     }
@@ -36,9 +34,6 @@ public class SalaBean implements Serializable {
         return "/restrito/sala/editSala.xhtml?faces-redirect=true";
     }
     public String deletarSala(int ID){
-        System.out.println("DELETAR BEAN " );
-        System.out.println(ID);
-
         salaService.deletarSala(ID);
         return "/salasList.xhtml?faces-redirect=true";
     }
@@ -50,8 +45,6 @@ public class SalaBean implements Serializable {
 
 
     public String editarSala(Sala sala) {
-        System.out.println("1: " + idLocal);
-        System.out.println("2: " + sala.getLocal().getID());
         salaService.editarSala(sala);
         return "/restrito/sala/salasList.xhtml?faces-redirect=true";
     }

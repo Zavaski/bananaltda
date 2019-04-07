@@ -9,8 +9,10 @@
     <ui:define name="Conteudo">
 
         <h:form id="localForm">
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
             <p:commandButton action="createLocal.xhtml?faces-redirect=true" value="Novo" />
-
             <p:dataTable id="local" var="local" value="#{localBean.listarLocais()}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

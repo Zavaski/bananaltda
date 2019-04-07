@@ -9,18 +9,18 @@
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="./css/skin.css"/>
-    <title>Título</title>
+    <title>Banana-ltda</title>
 </h:head>
 
 <h:body>
     <h:form id="barraDeFerramentas">
         <p:toolbar>
             <p:toolbarGroup align="left">
-                <p:menuButton value="Gerenciamento de Locais">
+                <p:menuButton value="Locais">
                     <p:menuitem value="Cadastrar Local" action="/restrito/local/createLocal.xhtml" ajax="false"/>
                     <p:menuitem value="Listar Locais" action="/restrito/local/locaisList.xhtml" ajax="false"/>
                 </p:menuButton>
-                <p:menuButton value="Gerenciamento de Salas">
+                <p:menuButton value="Salas">
                     <p:menuitem value="Cadastrar Sala" action="/restrito/sala/createSala.xhtml" ajax="false"/>
                     <p:menuitem value="Listar Salas" action="/restrito/sala/salasList.xhtml" ajax="false"/>
                 </p:menuButton>
@@ -33,10 +33,17 @@
                 </p:menuButton>
                <!-- <p:commandButton value="Menu 2" action="pagina3" ajax="false"/> -->
             </p:toolbarGroup>
+            <p:toolbarGroup align="right">
+                <p:menuButton value="#{loginBean.login}">
+                    <p:menuitem value="Deslogar" action="#{loginBean.Deslogar}" ajax="false"/>
+                </p:menuButton>
+
+            </p:toolbarGroup>
         </p:toolbar>
     </h:form>
+    <br/><br/><br/>
 
-    <div><ui:insert name="Conteudo"> Aqui vai o conteudo </ui:insert></div>
+    <div><ui:insert name="Conteudo">conteudo </ui:insert></div>
 
 </h:body>
 </html>

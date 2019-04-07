@@ -6,6 +6,8 @@ import com.banana.Service.Impl.LocalServiceImpl;
 import com.banana.Service.Impl.ReservaSalaServiceImpl;
 import com.banana.Service.Impl.SalaServiceImpl;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -40,6 +42,26 @@ public class ReservaSalaBean implements Serializable {
     transient private LocalServiceImpl localService;
 
     public String salvarReservaSala( ){
+        System.out.println("hora fim: " +  horaFim.getTime());
+        System.out.println("hora ini: " +horaInicio.getTime());
+
+        if(horaFim.getTime() <= horaInicio.getTime()){
+            System.out.println("A hora final deve ser maior que a hora inicial");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "A hora final deve ser maior que a hora inicial"));
+            return "";
+        }
+       if(reservaSalaService.buscarReservaPeriodo(dataInicio,dataFim, IDSala) == true){
+           System.out.println("TRUE");
+
+           System.out.println("Já há reserva para este período");
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Já há reserva para este período"));
+            return "";
+        }
+       else{
+           System.out.println("FALSE");
+
+       }
         reservaSalaService.salvarReservaSala(dataInicio,  dataFim,  horaInicio, horaFim,  IDLocal, IDSala, cafe, quantidadePessoas, descricao);
         return "/restrito/reservasala/reservasalasList.xhtml?faces-redirect=true";
     }

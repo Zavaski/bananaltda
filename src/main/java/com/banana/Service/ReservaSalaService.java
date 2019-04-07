@@ -17,4 +17,7 @@ public interface ReservaSalaService {
         public void editarReservaSala(ReservaSala reservaSala);
 
         public List<ReservaSala> listarReservaSalas();
+
+        public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID);
+
 }

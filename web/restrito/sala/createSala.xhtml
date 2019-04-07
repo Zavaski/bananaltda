@@ -1,34 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<?xml version='1.0' encoding='UTF-8' ?>
 
-<h:head>
-</h:head>
-<h:body>
-    <h:form>
-    <p:messages id="messages" showDetail="true" closable="true">
-        <p:autoUpdate />
-    </p:messages>
-    <h:panelGrid id="grid" columns="2" cellpadding="5">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
 
-        <p:outputLabel  value="Nome"/>
-        <h:inputText value="#{salaBean.nome}"  required="true" requiredMessage="Digite o nome"/>
+    <ui:define name="Conteudo">
+        <h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <h:panelGrid id="grid" columns="2" cellpadding="5">
 
-        <p:outputLabel  value="Descricao"/>
-        <h:inputText value="#{salaBean.descricao}"  required="true" requiredMessage="Digite a descrição"/>
+                <p:outputLabel  value="Nome"/>
+                <p:inputText value="#{salaBean.nome}"  required="true" requiredMessage="Digite o nome"/>
 
-        <p:outputLabel  value="Local: "  />
-        <p:selectOneMenu id="local" value="#{salaBean.idLocal}" required="true" requiredMessage="Selecione um local">
-            <f:selectItem itemLabel="Selecione um local" itemValue="" />
-            <f:selectItems value="#{salaBean.listarLocais()}"  />
-        </p:selectOneMenu>
+                <p:outputLabel  value="Descricao"/>
+                <p:inputText value="#{salaBean.descricao}"  required="true" requiredMessage="Digite a descrição"/>
 
-        <p:commandButton value="Salvar" action="#{salaBean.salvarSala()}"/>
-    </h:panelGrid>
-    </h:form>
-</h:body>
-</html>
+                <p:outputLabel  value="Local: "  />
+                <p:selectOneMenu id="local" value="#{salaBean.idLocal}" required="true" requiredMessage="Selecione um local">
+                    <f:selectItem itemLabel="Selecione um local" itemValue="" />
+                    <f:selectItems value="#{salaBean.listarLocais()}"  />
+                </p:selectOneMenu>
+
+                <p:commandButton value="Salvar" action="#{salaBean.salvarSala()}"/>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

@@ -16,11 +16,11 @@
     </h:form>
     <h:form>
         <h:panelGrid id="grid" columns="2" cellpadding="5">
-            <h:outputLabel value="Login"/>
-            <h:inputText value="#{loginBean.login}" required="true" requiredMessage="Digite o login"/>
-            <h:outputLabel value="Senha"/>
-            <h:inputSecret value="#{loginBean.senha}" required="true" requiredMessage="Digite a senha"/>
-            <h:commandButton value="Logar" action="#{loginBean.Logar}"/>
+            <p:outputLabel value="Login"/>
+            <p:inputText value="#{loginBean.login}" required="true" requiredMessage="Digite o login"/>
+            <p:outputLabel value="Senha"/>
+            <p:password value="#{loginBean.senha}" required="true" requiredMessage="Digite a senha"/>
+            <p:commandButton value="Logar" action="#{loginBean.Logar}"/>
         </h:panelGrid>
         <p:link outcome="/usuario/CadastrarUsuario.xhtml" value="Cadastre-se">
         </p:link>

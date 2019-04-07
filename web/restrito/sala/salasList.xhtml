@@ -1,77 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:o="http://omnifaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-</h:head>
+<?xml version='1.0' encoding='UTF-8' ?>
 
-<h:body>
-    <h:form id="salaForm">
-        <p:commandButton action="createSala.xhtml?faces-redirect=true" value="Novo" />
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
 
-        <p:dataTable id="sala" var="sala" value="#{salaBean.listarSalas()}" rows="10"
-                     paginator="true"
-                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15">
-            <f:facet name="header">
-                Salas
-            </f:facet>
-            <p:column headerText="ID">
-                <p:cellEditor>
-                    <f:facet name="output">
-                        <h:outputText value="#{sala.ID}"  />
-                    </f:facet>
-                    <f:facet name="input">
-                        <p:inputText value="#{sala.ID}" />
-                    </f:facet>
-                </p:cellEditor>
-            </p:column>
-            <p:column headerText="Nome">
-                <p:cellEditor>
-                    <f:facet name="output">
-                        <h:outputText value="#{sala.nome}" />
-                    </f:facet>
-                    <f:facet name="input">
-                        <p:inputText value="#{sala.nome}" />
-                    </f:facet>
-                </p:cellEditor>
-            </p:column>
-            <p:column headerText="Descrição">
-                <p:cellEditor>
-                    <f:facet name="output">
-                        <h:outputText value="#{sala.descricao}" />
-                    </f:facet>
-                    <f:facet name="input">
-                        <p:inputText value="#{sala.descricao}" />
-                    </f:facet>
-                </p:cellEditor>
-            </p:column>
-            <p:column headerText="Local">
-                <p:cellEditor>
-                    <f:facet name="output">
-                        <h:outputText value="#{sala.local.nome}" />
-                    </f:facet>
-                    <f:facet name="input">
-                        <p:inputText value="#{sala.local.nome}" />
-                    </f:facet>
-                </p:cellEditor>
-            </p:column>
-            <p:column headerText="Deletar">
+    <ui:define name="Conteudo">
+        <h:form id="salaForm">
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <p:commandButton action="createSala.xhtml?faces-redirect=true" value="Novo" />
 
-                <p:commandButton value="Deletar" action="#{salaBean.deletarSala(sala.ID)}" update="@form">
-                </p:commandButton>
-            </p:column>
-            <p:column headerText="Editar">
+            <p:dataTable id="sala" var="sala" value="#{salaBean.listarSalas()}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Salas
+                </f:facet>
+                <p:column headerText="ID">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <p:outputLabel value="#{sala.ID}"  />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{sala.ID}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Nome">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <p:outputLabel value="#{sala.nome}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{sala.nome}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Descrição">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <p:outputLabel value="#{sala.descricao}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{sala.descricao}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Local">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <p:outputLabel value="#{sala.local.nome}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{sala.local.nome}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Deletar">
 
-                <p:commandButton value="Editar" action="#{salaBean.editarSala(sala.ID)}">
-                </p:commandButton>
-            </p:column>
-        </p:dataTable>
-    </h:form>
-</h:body>
-</html>
+                    <p:commandButton value="Deletar" action="#{salaBean.deletarSala(sala.ID)}" update="@form">
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="Editar">
+
+                    <p:commandButton value="Editar" action="#{salaBean.editarSala(sala.ID)}">
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

@@ -14,13 +14,13 @@
             <h:panelGrid id="grid" columns="2" cellpadding="5">
 
                 <p:outputLabel value="Nome"/>
-                <h:inputText value="#{localBean.nome}"  required="true" requiredMessage="Digite o nome"/>
+                <p:inputText value="#{localBean.nome}"  required="true" requiredMessage="Digite o nome"/>
 
                 <p:outputLabel value="CNPJ"/>
-                <h:inputText value="#{localBean.CNPJ}"  required="true" requiredMessage="Digite o CNPJ"/>
+                <p:inputText value="#{localBean.CNPJ}"  required="true" requiredMessage="Digite o CNPJ"/>
 
                 <p:outputLabel value="Endereço"/>
-                <h:inputText value="#{localBean.endereco}" required="true" requiredMessage="Digite o endereço" />
+                <p:inputText value="#{localBean.endereco}" required="true" requiredMessage="Digite o endereço" />
 
                 <p:commandButton value="Salvar" action="#{localBean.salvarLocal()}"/>
             </h:panelGrid>
