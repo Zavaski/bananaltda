@@ -20,7 +20,7 @@
         <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
     </context-param>
-    <!--
+
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.banana.Filter.LoginFilter</filter-class>
@@ -29,5 +29,5 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/restrito/*</url-pattern>
     </filter-mapping>
-    -->
+
 </web-app>
