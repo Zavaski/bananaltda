@@ -42,25 +42,16 @@ public class ReservaSalaBean implements Serializable {
     transient private LocalServiceImpl localService;
 
     public String salvarReservaSala( ){
-        System.out.println("hora fim: " +  horaFim.getTime());
-        System.out.println("hora ini: " +horaInicio.getTime());
 
         if(horaFim.getTime() <= horaInicio.getTime()){
             System.out.println("A hora final deve ser maior que a hora inicial");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "A hora final deve ser maior que a hora inicial"));
             return "";
         }
-       if(reservaSalaService.buscarReservaPeriodo(dataInicio,dataFim, IDSala) == true){
-           System.out.println("TRUE");
-
+       if(reservaSalaService.buscarReservaPeriodo(dataInicio,dataFim, IDSala, horaInicio, horaFim) == true) {
            System.out.println("Já há reserva para este período");
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Já há reserva para este período"));
-            return "";
-        }
-       else{
-           System.out.println("FALSE");
-
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Já há reserva para este período"));
+           return "";
        }
         reservaSalaService.salvarReservaSala(dataInicio,  dataFim,  horaInicio, horaFim,  IDLocal, IDSala, cafe, quantidadePessoas, descricao);
         return "/restrito/reservasala/reservasalasList.xhtml?faces-redirect=true";
@@ -83,6 +74,19 @@ public class ReservaSalaBean implements Serializable {
 
 
     public String editarReservaSala(ReservaSala reservaSala) {
+        System.out.println(reservaSala.getHoraFim().getTime());
+        System.out.println(reservaSala.getHoraInicio().getTime());
+
+        if(reservaSala.getHoraFim().getTime() <= reservaSala.getHoraInicio().getTime()){
+            System.out.println("A hora final deve ser maior que a hora inicial");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "A hora final deve ser maior que a hora inicial"));
+            return "";
+        }
+        if(reservaSalaService.buscarReservaPeriodo(reservaSala.getDataInicio(),reservaSala.getHoraFim(), reservaSala.getSala().getID(), reservaSala.getHoraInicio(), reservaSala.getHoraFim()) == true) {
+            System.out.println("Já há reserva para este período");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Já há reserva para este período"));
+            return "";
+        }
         reservaSalaService.editarReservaSala(reservaSala);
         return "/restrito/reservasala/reservasalasList.xhtml?faces-redirect=true";
     }

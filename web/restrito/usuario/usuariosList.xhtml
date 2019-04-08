@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="Conteudo">
+
+        <h:form id="userForm">
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <p:dataTable id="user" var="user" value="#{usuarioBean.listarUsuario()}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Locais
+                </f:facet>
+                <p:column headerText="ID">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.ID}"  />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{user.ID}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Nome">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.nome}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{user.nome}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Login">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.login}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{user.login}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="E-mail">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{user.email}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{user.email}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

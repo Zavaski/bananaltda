@@ -18,6 +18,6 @@ public interface ReservaSalaService {
 
         public List<ReservaSala> listarReservaSalas();
 
-        public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID);
+        public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID,Date horaInicio, Date horaFim);
 
 }

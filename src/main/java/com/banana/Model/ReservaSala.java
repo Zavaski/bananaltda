@@ -13,7 +13,8 @@ public class ReservaSala {
     private int ID;
     private Date dataInicio;
     private Date dataFim;
-
+    private Date horaInicio;
+    private Date horaFim;
     @OneToOne
     private Local local;
     @OneToOne
@@ -112,4 +113,19 @@ public class ReservaSala {
         this.usuario = usuario;
     }
 
+    public Date getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(Date horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public Date getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(Date horaFim) {
+        this.horaFim = horaFim;
+    }
 }

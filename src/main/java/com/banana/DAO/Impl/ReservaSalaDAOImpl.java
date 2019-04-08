@@ -5,14 +5,12 @@ import com.banana.Model.ReservaSala;
 import com.banana.Model.Sala;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import sun.rmi.runtime.Log;
 
 import javax.faces.context.FacesContext;
 import javax.persistence.Query;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ReservaSalaDAOImpl implements ReservaSalaDAO {
 
@@ -97,27 +95,23 @@ public class ReservaSalaDAOImpl implements ReservaSalaDAO {
 
     @Override
     public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID) {
-        boolean dataInicialPeriodo = buscarReservaPeriodoDataInicial(dataInicioQuery, dataFimQuery,SalaID);
-        boolean dataFimPeriodo = buscarReservaPeriodoDataFinal(dataFimQuery, SalaID);
-        System.out.println("data inicio periodo: " + dataInicialPeriodo);
-        System.out.println("data fim periodo: " + dataFimPeriodo);
-
-        if(dataInicialPeriodo ||dataFimPeriodo){
-            return true;
-        }
-        return false;
+        //boolean dataInicialPeriodo = buscarReservaPeriodoDataInicial(dataInicioQuery, dataFimQuery, SalaID);
+        return buscarReservaPeriodoDataInicial(dataInicioQuery, dataFimQuery, SalaID);
     }
-    public boolean buscarReservaPeriodoDataInicial(Date dataInicioQuery,  Date dataFimQuery, int SalaID){
+    public boolean buscarReservaPeriodoDataInicial(Date dataInicioQuery, Date dataFimQuery, int SalaID){
         Transaction transaction = null;
+        java.sql.Date dataInicio ;
+        dataInicio = new java.sql.Date(dataInicioQuery.getTime());
+        java.sql.Date dataFim;
+        dataFim = new java.sql.Date(dataFimQuery.getTime());
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createQuery("FROM ReservaSala AS rs WHERE rs.sala.id= :id AND rs.dataInicio BETWEEN :dataInicial AND :dataFinal ");
 
+            //SELECT * FROM banana.reservasala as rs WHERE (sala_id = 8) AND ( (dataInicio BETWEEN '2019-04-01 00:02:00' AND '2019-04-01 15:40:00') );
+            Query query = session.createQuery("FROM ReservaSala AS rs WHERE (rs.sala.id= :id) AND rs.dataInicio BETWEEN :dataInicial AND :dataFinal");
             query.setParameter("id", SalaID);
-            query.setParameter("dataInicial", dataInicioQuery.toString());
-            query.setParameter("dataFinal", dataFimQuery.toString());
+            query.setParameter("dataInicial", dataInicio);
+            query.setParameter("dataFinal",dataFim);
 
-            //   query.setParameter("dataFinal", dataFimQuery);
-            System.out.println("data INICIO SIZE " + query.getResultList().size());
             if (query.getResultList().size() > 0) {
                 return true;
             }
@@ -130,24 +124,24 @@ public class ReservaSalaDAOImpl implements ReservaSalaDAO {
             return false;
         }
     }
-    public boolean buscarReservaPeriodoDataFinal(Date dataFimQuery, int SalaID){
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createQuery("FROM ReservaSala WHERE sala.id = :id AND :dataFimQuery >= dataInicio and :dataFimQuery <= dataFim");
-            query.setParameter("id", SalaID);
-            query.setParameter("dataFimQuery", dataFimQuery);
-            System.out.println("data FIM SIZE " + query.getResultList().size());
-            if(query.getResultList().size() > 0){
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            return false;
-        }
-    }
+//    public boolean buscarReservaPeriodoDataFinal(Date dateInicioQuery, Date dataFimQuery, int SalaID){
+//        Transaction transaction = null;
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            Query query = session.createQuery("FROM ReservaSala WHERE sala.id = :id AND :dataFimQuery >= dataInicio and :dataFimQuery <= dataFim");
+//            query.setParameter("id", SalaID);
+//            query.setParameter("dataFimQuery", dataFimQuery);
+//            System.out.println("data FIM SIZE " + query.getResultList().size());
+//            if(query.getResultList().size() > 0){
+//                return true;
+//            }
+//            return false;
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
 
 }

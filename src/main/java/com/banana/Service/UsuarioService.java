@@ -10,4 +10,6 @@ public interface UsuarioService {
 
     public List<Usuario> listarUsuario();
 
+    public boolean verificarExistsLogin(String login);
+
 }

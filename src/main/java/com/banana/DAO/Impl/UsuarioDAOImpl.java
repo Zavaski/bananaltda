@@ -1,10 +1,13 @@
 package com.banana.DAO.Impl;
 
 import com.banana.DAO.UsuarioDAO;
+import com.banana.Model.Sala;
 import com.banana.Model.Usuario;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
@@ -69,4 +72,23 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean verificarExistsLogin(String login) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery("FROM Usuario WHERE login = :login ");
+            query.setParameter("login", login);
+            int t = query.getResultList().size();
+            if(t > 0){
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 }

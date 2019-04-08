@@ -13,7 +13,6 @@ public class LocalServiceImpl implements LocalService {
     @Inject
     transient private LocalDAOImpl localDAO;
 
-    @Override
     public void salvarLocal(String nome, String CNPJ, String endereco){
         System.out.print("Salvar service ");
         Local local = new Local();

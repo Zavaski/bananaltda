@@ -11,18 +11,15 @@
             <p:messages id="messages" showDetail="true" closable="true">
                 <p:autoUpdate />
             </p:messages>
+            <!--
+                        <p:outputLabel  value="Sala: "  />
+                        <p:selectOneMenu id="salas" value="#{reservaSalaBean.IDSalaBusca}">
+                            <f:selectItem itemLabel="Selecione uma Sala" itemValue="" />
+                            <f:selectItems value="#{reservaSalaBean.listarSalas()}                        </p:selectOneMenu>
 
-            <p:outputLabel for="data" value="Data Inicio:" />
-            <p:calendar id="data" value="#{reservaSalaBean.dataBusca}" pattern="dd-MM-yyyy" mask="true" />
-
-            <p:outputLabel  value="Sala: "  />
-            <p:selectOneMenu id="salas" value="#{reservaSalaBean.IDSalaBusca}">
-                <f:selectItem itemLabel="Selecione uma Sala" itemValue="" />
-                <f:selectItems value="#{reservaSalaBean.listarSalas()}" />
-            </p:selectOneMenu>
-
-            <p:commandButton value="Buscar" action="#{reservaSalaBean.buscarSalas()}" update="@form">
-            </p:commandButton>
+                       <p:commandButton value="Buscar" action="#{reservaSalaBean.buscarSalas()}" update="@form">
+                        </p:commandButton>
+           -->
 
 
             <br></br>

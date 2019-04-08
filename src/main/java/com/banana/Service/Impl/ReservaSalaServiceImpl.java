@@ -26,7 +26,6 @@ public class ReservaSalaServiceImpl implements ReservaSalaService {
         System.out.println("IDSALA " + IDSala);
 
         System.out.println("Salvar service ");
-
         dataInicio.setHours(horaInicio.getHours());
         dataInicio.setMinutes(horaInicio.getMinutes());
         dataFim = new Date();
@@ -36,6 +35,8 @@ public class ReservaSalaServiceImpl implements ReservaSalaService {
         Local local =  localService.buscarLocalByID(IDLocal);
         Sala sala = salaService.buscarSalaByID(IDSala);
         ReservaSala rs = new ReservaSala();
+        rs.setHoraInicio(horaInicio);
+        rs.setHoraFim(horaFim);
         rs.setCafe(cafe);
         rs.setDataFim(dataFim);
         rs.setDataInicio(dataInicio);
@@ -70,7 +71,13 @@ public class ReservaSalaServiceImpl implements ReservaSalaService {
     }
 
     @Override
-    public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID) {
+    public boolean buscarReservaPeriodo(Date dataInicioQuery, Date dataFimQuery, int SalaID, Date horaInicio, Date horaFim) {
+        dataInicioQuery.setHours(horaInicio.getHours());
+        dataInicioQuery.setMinutes(horaInicio.getMinutes());
+        dataFimQuery = new Date();
+        dataFimQuery.setDate(dataInicioQuery.getDate());
+        dataFimQuery.setHours(horaFim.getHours());
+        dataFimQuery.setMinutes(horaFim.getMinutes());
         return reservaSalaDAO.buscarReservaPeriodo(dataInicioQuery,dataFimQuery,SalaID);
     }
 

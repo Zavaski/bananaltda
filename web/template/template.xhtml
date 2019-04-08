@@ -16,7 +16,7 @@
     <h:form id="barraDeFerramentas">
         <p:toolbar>
             <p:toolbarGroup align="left">
-                <p:menuButton value="Locais">
+                <p:menuButton value="Local">
                     <p:menuitem value="Cadastrar Local" action="/restrito/local/createLocal.xhtml" ajax="false"/>
                     <p:menuitem value="Listar Locais" action="/restrito/local/locaisList.xhtml" ajax="false"/>
                 </p:menuButton>
@@ -29,7 +29,7 @@
                     <p:menuitem value="Listar Reserva de salas" action="/restrito/reservasala/reservasalasList.xhtml" ajax="false"/>
                 </p:menuButton>
                 <p:menuButton value="Usuarios">
-                    <p:menuitem value="Listar Usuarios" action="pagina1" ajax="false"/>
+                    <p:menuitem value="Listar Usuarios" action="/restrito/usuario/usuariosList.xhtml" ajax="false"/>
                 </p:menuButton>
                <!-- <p:commandButton value="Menu 2" action="pagina3" ajax="false"/> -->
             </p:toolbarGroup>
@@ -42,8 +42,6 @@
         </p:toolbar>
     </h:form>
     <br/><br/><br/>
-
     <div><ui:insert name="Conteudo">conteudo </ui:insert></div>
-
 </h:body>
 </html>

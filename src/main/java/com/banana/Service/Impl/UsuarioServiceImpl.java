@@ -24,4 +24,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         return usuarioDAO.listarUsuarios();
     }
+
+    @Override
+    public boolean verificarExistsLogin(String login) {
+        return usuarioDAO.verificarExistsLogin(login);
+    }
+
+
 }

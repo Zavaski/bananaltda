@@ -3,6 +3,8 @@ package com.banana.Bean;
 import com.banana.Model.Usuario;
 import com.banana.Service.Impl.UsuarioServiceImpl;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,19 +19,23 @@ public class UsuarioBean implements Serializable {
     private String senha;
     private String email;
     @Inject
-    transient private UsuarioServiceImpl usuarioServiceImpl;
+    transient private UsuarioServiceImpl usuarioService;
 
     public String cadastrarUsuario() {
-        usuarioServiceImpl.cadastrarUsuario(nome, login, senha, email);
+        if(usuarioService.verificarExistsLogin(login)){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Login já está em uso, escolha outro"));
+            return "";
+        }
+        usuarioService.cadastrarUsuario(nome, login, senha, email);
         return "/login.xhtml?faces-redirect=true";
     }
     public String editarUsuario(int id) {
-        usuarioServiceImpl.cadastrarUsuario(nome, login, senha, email);
+        usuarioService.cadastrarUsuario(nome, login, senha, email);
         return "/login.xhtml?faces-redirect=true";
     }
 
     public List<Usuario> listarUsuario() {
-        return usuarioServiceImpl.listarUsuario();
+        return usuarioService.listarUsuario();
     }
 
     public String getNome() {

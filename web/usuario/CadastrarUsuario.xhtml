@@ -10,6 +10,7 @@
 <h:head>
 </h:head>
 <h:body>
+    <br/><br/><br/><br/>
     <h:form>
         <p:messages id="messages" showDetail="true" closable="true">
             <p:autoUpdate />
@@ -28,7 +29,7 @@
             <p:outputLabel value="Senha"/>
             <p:password value="#{usuarioBean.senha}" required="true" requiredMessage="Digite a senha"/>
 
-            <p:commandButton value="Salvar" action="#{usuarioBean.cadastrarUsuario()}" update="@form"/>
+         <p:commandButton value="Salvar"  action="#{usuarioBean.cadastrarUsuario()}" update="@form"/>
         </h:panelGrid>
     </h:form>
 </h:body>

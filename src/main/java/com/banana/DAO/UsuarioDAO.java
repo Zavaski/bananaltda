@@ -14,4 +14,7 @@ public interface UsuarioDAO {
 
     public void editarUsuario(Usuario user);
 
+    public boolean verificarExistsLogin(String login);
+
+
 }

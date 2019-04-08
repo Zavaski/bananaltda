@@ -1,30 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<?xml version='1.0' encoding='UTF-8' ?>
 
-<h:head>
-</h:head>
-<h:body>
-    <h:form>
-        <p:messages id="messages" showDetail="true" closable="true">
-            <p:autoUpdate />
-        </p:messages>
-        <h:panelGrid id="grid" columns="2" cellpadding="5">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <script type="text/javascript">
+            PrimeFaces.locales['de'] = {
+                closeText: 'Schließen',
+                prevText: 'Zurück',
+                nextText: 'Weiter',
+                monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+                monthNamesShort: ['Jan', 'Feb', 'März', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+                dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+                dayNamesMin: ['S', 'M', 'D', 'M ', 'D', 'F ', 'S'],
+                weekHeader: 'Woche',
+                FirstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Nur Zeit',
+                timeText: 'Zeit',
+                hourText: 'Stunde',
+                minuteText: 'Minute',
+                secondText: 'Sekunde',
+                currentText: 'Aktuelles Datum',
+                ampm: false,
+                month: 'Monat',
+                week: 'Woche',
+                day: 'Tag',
+                allDayText: 'Ganzer Tag'
+            };
+        </script>
+
+        <style type="text/css">
+            .value {
+                font-weight: bold;
+            }
+        </style>
+    </h:head>
+    <ui:define name="Conteudo">
+        <h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <h:panelGrid id="grid" columns="2" cellpadding="5">
+
+                <p:outputLabel for="data" value="Data:" />
+                <p:calendar id="data" value="#{editReservaSala.dataInicio}" pattern="dd-MM-yyyy" mask="true" required="true" requiredMessage="Digite a data"/>
+
+                <p:outputLabel for="timeInicio" value="Horario Inicial:" />
+                <p:calendar id="timeInicio" value="#{editReservaSala.horaInicio}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Digite o horario inicial"/>
+
+                <p:outputLabel for="timeFim" value="Horario Final:" />
+                <p:calendar id="timeFim" value="#{editReservaSala.horaFim}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Digite o horario final"/>
+
+                <p:outputLabel  value="Local: "  />
+                <p:selectOneMenu id="locais"   value="#{editReservaSala.local.ID}" required="true" requiredMessage="Digite o local">
+                    <f:selectItem itemLabel="Selecione um local" itemValue="" />
+                    <f:ajax event="valueChange" execute="@this" render="@this salas" />
+                    <f:selectItems value="#{reservaSalaBean.listarLocais()}"  />
+                </p:selectOneMenu>
+
+                <p:outputLabel  value="Sala: "  />
+                <p:selectOneMenu id="salas" value="#{editReservaSala.sala.ID}" required="true" requiredMessage="Digite a sala">
+                    <f:selectItem itemLabel="Selecione uma Sala" itemValue="" />
+                    <f:selectItems value="#{reservaSalaBean.listarSalasByLocalID(editReservaSala.local.ID)}" />
+                </p:selectOneMenu>
+
+                <p:outputLabel  value="Descrição"/>
+                <p:inputText value="#{editReservaSala.descricao}"  required="true" requiredMessage="Digite a descrição" />
 
 
-            <h:outputLabel value="Nome"/>
-            <h:inputText value="#{editReservaSala.dataInicio}" />
+                <p:outputLabel  value="Café: "  />
+                <p:selectBooleanCheckbox value="#{editReservaSala.cafe}">
+                </p:selectBooleanCheckbox>
 
-            <h:outputLabel value="Descrição"/>
-            <h:inputText value="#{editReservaSala.dataFim}" />
+                <p:outputLabel  value="Quantidade de pessoas"/>
+                <p:inputText value="#{editReservaSala.quantidadePessoas}"  required="true" requiredMessage="Digite a quantidade de pessoas" />
 
 
-            <p:commandButton value="Salvar" action="#{reservaSalaBean.editarReservaSala(editReservaSala)}"/>
-        </h:panelGrid>
-    </h:form>
-</h:body>
-</html>
+
+                <p:commandButton value="Salvar" action="#{reservaSalaBean.editarReservaSala(editReservaSala)}"/>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
